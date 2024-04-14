@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+$common-styles: (
+  text-align: center,
+  margin-top: 15px,
+  font-size: 20px,
+  font-weight: bold
+);
+
+$click-styles: (
+  text-align: center,
+  margin-top: 25px,
+  font-size: 20px,
+  font-weight: bold,
+  width: 130px,
+  height: 20px,
+  border-style: solid,
+  border-width: 2px,
+  padding: 15px,
+  margin-left: 20px
+);
+
+$common-flex-styles: (
+  display: flex,
+  justify-content: center,
+  align-items: center,
+);
+
+
+@mixin click-styles-helper {
+  @each $property,$value in $click-styles {
+    #{$property}: $value;
+  }
+}
+
+@mixin common-styles-helper {
+  @each $property,$value in $common-styles {
+    #{$property}: $value;
+  }
+}
+
+@mixin flexbox-helper {
+  @each $property, $value in $common-flex-styles {
+    #{$property}: $value;
+  }
+}
+
+.tetris__header {
+  @include flexbox-helper;
+}
+
+.tetris__header h1 {
+  width: 806px;
+  height: 83px;
+  text-align: center;
+
+}
+
+.tetris__body {
+  @include flexbox-helper;
+}
+
+.tetris__box {
+  width: 200px;
+  height: 400px;
+  border-color:#000000;
+  border-style: solid;
+  border-width: 1px;
+  margin: 0 80px;
+}
+
+.tetris_box_border-size_3 {
+  width: 200px;
+  height: 400px;
+  border-color:#000000;
+  border-style: solid;
+  border-width: 3px;
+}
+
+.tetris__next__shape {
+  text-align: center;
+  width: 192px;
+  height: 32px;
+  margin-top: 65px;
+}
+
+.tetris__score-label {
+ @include common-styles-helper;
+}
+
+.tetris__score-value {
+  @include common-styles-helper;
+}
+
+.tetris__new__game {
+  @include click-styles-helper;
+  border-color: #4F4CCA;
+  color: #4F4CCA;
+}
+
+.tetris__pause {
+  @include click-styles-helper;
+  border-color: #57B25A;
+  color: #57B25A;
+}
