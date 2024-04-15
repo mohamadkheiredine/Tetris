@@ -110,3 +110,13 @@ $common-flex-styles: (
   border-color: #57B25A;
   color: #57B25A;
 }
+
+.tetris__new__game:hover {
+  background-color: #4F4CCA;
+  color: #FFFFFF;
+}
+
+.tetris__pause:hover {
+  background-color: #57B25A;
+  color: #FFFFFF;
+}
