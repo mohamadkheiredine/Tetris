@@ -108,3 +108,24 @@ body {
   background-color: #57B25A;
   color: #FFFFFF;
 }
+
+.block {
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+}
+
+.block::after {
+    content: "";
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    border: solid 2px #000;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+}
+
