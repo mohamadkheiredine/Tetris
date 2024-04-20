@@ -21,8 +21,8 @@ export default class Block {
     block.classList.add('block_color_' + colorOfTheBlock);
     block.style.width = this.unitSize + 'px'; 
     block.style.height = this.unitSize + 'px';
-    block.style.marginTop = this.y + 'px';
-    block.style.marginLeft = this.x + 'px';
+    block.style.marginTop = (this.y * this.unitSize) + 'px';
+    block.style.marginLeft = (this.x * this.unitSize) + 'px';
     block.style.borderWidth = '4px'; 
     
     
