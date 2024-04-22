@@ -7,8 +7,7 @@ body {
   min-height: 100vh;
 }
 
-
-.Tetris {
+.tetris {
   display: flex;
   flex-direction: column; 
   width: 100%; 
@@ -22,29 +21,24 @@ body {
 }
 
 .tetris__header-title {
-  height: 83px;
   text-align: center;
-
+  margin: 50px 0;
 }
 
 .tetris__body {
   display: flex;
   justify-content: center;
-  align-items: center;;
+  align-items: center;
+  gap: 100px;
 }
 
 .tetris__box {
   width: 200px;
   height: 400px;
   border: 1px solid #000;
-  margin: 0 80px;
 }
 
 .tetris_box_border-size_3 {
-  width: 200px;
-  height: 400px;
-  border-color:#000000;
-  border-style: solid;
   border-width: 3px;
 }
 
@@ -82,19 +76,10 @@ body {
   margin-left: 20px;;
   border-color: #4F4CCA;
   color: #4F4CCA;
+  cursor: pointer;
 }
 
 .tetris__action-button_is-pause-button {
-  text-align: center;
-  margin-top: 25px;
-  font-size: 20px;
-  font-weight: bold;
-  width: 130px;
-  height: 20px;
-  border-style: solid;
-  border-width: 2px;
-  padding: 15px;
-  margin-left: 20px;;
   border-color: #57B25A;
   color: #57B25A;
 }
