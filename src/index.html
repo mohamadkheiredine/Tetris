@@ -6,6 +6,26 @@
   <title>Tetris</title>
 </head>
 <body>
-  <h1>Tetris Game</h1>
+  <div class="tetris">
+    <div class="tetris__header">
+      <h1 class="tetris__header-title">TETRIS GAME</h1>
+    </div>
+    <div class="tetris__body">
+       <div class="tetris__box">
+        <div class="tetris__next-shape">
+          <p>Next Shape</p>
+        </div>
+       </div>
+       <div class="tetris__box tetris__box_border-size_3 js-playing-field"></div>
+       <div class="tetris__box">
+         <div class="tetris__score-label">Score</div>
+         <div class="tetris__score-value js-score">0</div>
+         <div class="tetris__score-label">High Score</div>
+         <div class="tetris__score-value js-high-score">10</div>
+         <div class="tetris__action-button">New Game</div>
+         <div class="tetris__action-button tetris__action-button_is-pause-button">Pause</div>
+       </div>
+    </div>
+  </div>
 </body>
 </html>
