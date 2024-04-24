@@ -20,6 +20,7 @@ export default class Block {
     block.style.height = `${this.unitSize}px`;
     block.style.top = `${this.y * this.unitSize}px`;
     block.style.left = `${this.x * this.unitSize}px`;
+    
     return block;
-}
+  }
 }
