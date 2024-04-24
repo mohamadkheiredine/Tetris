@@ -98,8 +98,6 @@ body {
   position: absolute;
   display: block;
   box-sizing: border-box;
-  width: 20px;
-  height: 20px;
 }
 
 .block::after {
@@ -170,6 +168,6 @@ body {
   border-left: solid 4px #3399CC ;
 }
 
-.js-playing-field {
+.tetris__box_position_relative {
   position: relative;
 }
