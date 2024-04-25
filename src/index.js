@@ -12,5 +12,3 @@ import './styles/main.scss';
   });
   iShape.draw();
 })();
-
-
