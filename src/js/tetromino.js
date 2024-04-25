@@ -14,8 +14,8 @@ export default class Tetromino {
     let options = this.constructor.blockOptions[this.rotation];
     return options.map(option => {
       return new Block({
-        x: (option.x + this.x),
-        y: (option.y + this.y),
+        x: option.x + this.x,
+        y: option.y + this.y,
         unitSize: this.unitSize,
         color: this.constructor.color,
       });
@@ -23,6 +23,6 @@ export default class Tetromino {
   }
 
   draw() {
-    this.blocks.forEach(block => { this.playingField.appendChild(block.getHtmlElement()); });
+    this.blocks.forEach(block => this.playingField.appendChild(block.getHtmlElement()));
   }
 }
