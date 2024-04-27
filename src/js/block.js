@@ -13,9 +13,8 @@ export default class Block {
   
   getHtmlElement() {
     let block = document.createElement('div');
-    let colorOfTheBlock = this.color;
     block.classList.add("block");
-    block.classList.add(`block_color_${colorOfTheBlock}`);
+    block.classList.add(`block_color_${this.color}`);
     block.style.width = `${this.unitSize}px`; 
     block.style.height = `${this.unitSize}px`;
     block.style.top = `${this.y * this.unitSize}px`;
