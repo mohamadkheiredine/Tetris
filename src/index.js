@@ -1,14 +1,11 @@
-import I from './js/I';
+import Tetromino from "./js/tetromino";
+import Tetris from "./js/tetris";
+import Block from "./js/block";
 import './styles/main.scss';
 
-(() => {
-  const playingField = document.querySelector('.js-playing-field');
-  const iShape = new I({
-    x: 2,
-    y: 0,
-    playingField,
-    rotation: 0,
-    unitSize: 20
-  });
-  iShape.draw();
-})();
+let tetris = new Tetris();
+let newGameButton = document.querySelector('.js-new-game');
+
+newGameButton.addEventListener('click', () => {
+  tetris.start();
+})

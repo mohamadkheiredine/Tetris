@@ -25,4 +25,36 @@ export default class Tetromino {
   draw() {
     this.blocks.forEach(block => this.playingField.appendChild(block.getHtmlElement()));
   }
+
+  checkCollision(blocks) {
+    for (let i = 0 ; i < blocks.length ; i++) {
+      if (blocks[i].y === 20) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  clearBlock() { 
+    this.blocks.forEach(block => {
+      this.playingField.removeChild(block.getHtmlElement());
+    })
+  }
+
+  moveDown() {
+    let currentValue = this.y;
+    this.playingField.clearBlock();
+    this.y += 1;
+    let newBlocks = this.createBlocks();
+    if (checkCollision(newBlocks)) {
+      this.y = currentValue;
+      this.draw();
+      return false;
+    }
+    else {
+      this.blocks = this.createBlocks();
+      this.blocks.draw();
+      return true;
+    }
+  }
 }
