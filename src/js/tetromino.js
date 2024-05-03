@@ -35,7 +35,7 @@ export default class Tetromino {
     return false;
   }
 
-  clearBlock() { 
+  clearBlocks() { 
     this.blocks.forEach(block => {
       this.playingField.removeChild(block.getHtmlElement());
     })
@@ -43,17 +43,17 @@ export default class Tetromino {
 
   moveDown() {
     let currentValue = this.y;
-    this.playingField.clearBlock();
+    this.clearBlocks();
     this.y += 1;
     let newBlocks = this.createBlocks();
-    if (checkCollision(newBlocks)) {
+    if (this.checkCollision(newBlocks)) {
       this.y = currentValue;
       this.draw();
       return false;
     }
     else {
-      this.blocks = this.createBlocks();
-      this.blocks.draw();
+      this.blocks = newBlocks;
+      this.draw();
       return true;
     }
   }

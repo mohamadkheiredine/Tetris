@@ -31,7 +31,7 @@ export default class Tetris {
       y: -2,
       playingField: this.elements.playingField,
       rotation: rotationOptions[randomRotation],
-      unitSize: `20px`,
+      unitSize: 20,
     });
   }
 
@@ -41,22 +41,20 @@ export default class Tetris {
   }
 
   drawShape() {
-    this.elements.playingField.appendChild(this.shape);
+    this.shape.draw()
     this.moveCurrentShape();
   }
 
   async moveCurrentShape() {
     try {
-        if (this.shape.moveDown()) { 
-          await this.sleep(700);
-          this.moveCurrentShape();
-        }
-        else {
-          return;
-        }
+      if (!this.shape.moveDown()) {
+        return;
+      }
+      await this.sleep(700);
+      this.moveCurrentShape();
     }
-    catch(error) {
-      console.error('there is an error');
+    catch(error){
+      console.error("there is an error");
     }
-  }
+    }
 }
