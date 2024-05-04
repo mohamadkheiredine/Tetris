@@ -27,12 +27,7 @@ export default class Tetromino {
   }
 
   checkCollision(blocks) {
-    for (let i = 0 ; i < blocks.length ; i++) {
-      if (blocks[i].y === 20) {
-        return true;
-      }
-    }
-    return false;
+    return blocks.every(block => block.y >= 19);
   }
 
   clearBlocks() { 
