@@ -37,7 +37,7 @@ export default class Tetromino {
 
   clearBlocks() { 
     this.blocks.forEach(block => {
-      this.playingField.removeChild(block.getHtmlElement());
+      this.playingField.removeChild(block.blockDiv);
     })
   }
 

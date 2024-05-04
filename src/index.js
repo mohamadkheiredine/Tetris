@@ -8,4 +8,4 @@ let newGameButton = document.querySelector('.js-new-game');
 
 newGameButton.addEventListener('click', () => {
   tetris.start();
-})
+})();

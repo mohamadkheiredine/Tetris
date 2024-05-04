@@ -46,15 +46,12 @@ export default class Tetris {
   }
 
   async moveCurrentShape() {
-    try {
-      if (!this.shape.moveDown()) {
-        return;
-      }
-      await this.sleep(700);
-      this.moveCurrentShape();
-    }
-    catch(error){
-      console.error("there is an error");
-    }
-    }
+    if (!this.shape.moveDown()) 
+      return; 
+    
+    await this.sleep(700); 
+    
+    this.moveCurrentShape(); 
+  }
+  
 }
