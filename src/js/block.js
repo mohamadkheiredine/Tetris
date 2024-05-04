@@ -12,14 +12,14 @@ export default class Block {
   }
   
   getHtmlElement() {
-    let block = document.createElement('div');
-    block.classList.add("block");
-    block.classList.add(`block_color_${this.color}`);
-    block.style.width = `${this.unitSize}px`; 
-    block.style.height = `${this.unitSize}px`;
-    block.style.top = `${this.y * this.unitSize}px`;
-    block.style.left = `${this.x * this.unitSize}px`;
+    this.blockDiv = document.createElement('div');
+    this.blockDiv.classList.add("block");
+    this.blockDiv.classList.add(`block_color_${this.color}`);
+    this.blockDiv.style.width = `${this.unitSize}px`; 
+    this.blockDiv.style.height = `${this.unitSize}px`;
+    this.blockDiv.style.top = `${this.y * this.unitSize}px`;
+    this.blockDiv.style.left = `${this.x * this.unitSize}px`;
     
-    return block;
+    return this.blockDiv;
   }
 }
