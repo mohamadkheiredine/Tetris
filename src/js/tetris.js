@@ -46,12 +46,10 @@ export default class Tetris {
   }
 
   async moveCurrentShape() {
-    if (!this.shape.moveDown()) 
+    if (!this.shape.moveDown()) {
       return; 
-    
+    }   
     await this.sleep(700); 
-    
     this.moveCurrentShape(); 
   }
-  
 }
