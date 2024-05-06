@@ -27,7 +27,9 @@ export default class Tetromino {
   }
 
   checkCollision(blocks) {
-    return blocks.every(block => block.y >= 19);
+    return !blocks.every(block => {
+      return block.y <= 19 && block.x >= 0 && block.x <= 9;
+    });
   }
 
   clearBlocks() { 
@@ -36,10 +38,10 @@ export default class Tetromino {
     })
   }
 
-  moveDown() {
+  simulateMove(callback) {
     let currentValue = this.y;
     this.clearBlocks();
-    this.y += 1;
+    callback();
     let newBlocks = this.createBlocks();
     if (this.checkCollision(newBlocks)) {
       this.y = currentValue;
@@ -51,5 +53,29 @@ export default class Tetromino {
       this.draw();
       return true;
     }
+  }
+
+  moveDown() {
+    return this.simulateMove(() =>
+      this.y += 1
+    );
+  }
+
+  moveLeft() {
+    return this.simulateMove(() =>
+      this.x -= 1
+    );
+  }
+
+  moveRight() {
+    return this.simulateMove(() =>
+      this.x += 1
+    );
+  }
+
+  rotate() {
+    return this.simulateMove(() =>
+      this.rotation += 90
+    );
   }
 }
