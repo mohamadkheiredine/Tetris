@@ -15,6 +15,7 @@ const KEYS = {
   down: 40,
   r: 82
 };
+
 export default class Tetris {
   get elements() {
     return {
@@ -44,9 +45,9 @@ export default class Tetris {
   }
 
   start() {
+    this.setupListeners();
     this.shape = this.getRandomShape();
     this.drawShape();
-    this.setupListeners();
   }
 
   drawShape() {
@@ -63,23 +64,22 @@ export default class Tetris {
   }
   
   setupListeners(){
-    document.addEventListener('click', event => {
-        console.log(`you click on the ${event.key}`);
-        switch(event.key) {
-          case ('left') :
+    document.addEventListener('keydown', event => {
+        switch(event.keyCode) {
+          case (KEYS.left) :
             this.moveLeft();
             break;
-          case ('right') :
+          case (KEYS.right) :
             this.moveRight();
             break;
-          case ('down') :
+          case (KEYS.down) :
             this.moveDown();
             break;
-          case ('rotate') :
+          case (KEYS.r) :
             this.rotate();
             break;
           default : 
-            console.log("you should press on another key");
+            break;
         }
     });
   }

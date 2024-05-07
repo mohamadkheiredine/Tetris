@@ -75,7 +75,7 @@ export default class Tetromino {
 
   rotate() {
     return this.simulateMove(() =>
-      this.rotation += 90
+      this.rotation %= 360
     );
   }
 }
