@@ -67,16 +67,16 @@ export default class Tetris {
     document.addEventListener('keydown', event => {
         switch(event.keyCode) {
           case (KEYS.left) :
-            this.moveLeft();
+            this.shape.moveLeft();
             break;
           case (KEYS.right) :
-            this.moveRight();
+            this.shape.moveRight();
             break;
           case (KEYS.down) :
-            this.moveDown();
+            this.shape.moveDown();
             break;
           case (KEYS.r) :
-            this.rotate();
+            this.shape.rotate();
             break;
           default : 
             break;
