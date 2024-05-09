@@ -39,12 +39,14 @@ export default class Tetromino {
   }
 
   simulateMove(callback) {
-    let currentValue = this.y;
+    let {x, y, rotation} = this;
     this.clearBlocks();
     callback();
     let newBlocks = this.createBlocks();
     if (this.checkCollision(newBlocks)) {
-      this.y = currentValue;
+      this.y = y;
+      this.x = x;
+      this.rotation = rotation;
       this.draw();
       return false;
     }
