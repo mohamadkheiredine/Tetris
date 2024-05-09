@@ -7,6 +7,15 @@ import S from './S';
 import T from './T';
 import Z from './Z';
 
+const KEYS = {
+  space: 32,
+  left: 37,
+  up: 38,
+  right: 39,
+  down: 40,
+  r: 82
+};
+
 export default class Tetris {
   get elements() {
     return {
@@ -36,6 +45,7 @@ export default class Tetris {
   }
 
   start() {
+    this.setupListeners();
     this.shape = this.getRandomShape();
     this.drawShape();
   }
@@ -52,4 +62,26 @@ export default class Tetris {
     await this.sleep(700); 
     this.moveCurrentShape(); 
   }
+  
+  setupListeners(){
+    document.addEventListener('keydown', event => {
+        switch(event.keyCode) {
+          case (KEYS.left) :
+            this.shape.moveLeft();
+            break;
+          case (KEYS.right) :
+            this.shape.moveRight();
+            break;
+          case (KEYS.down) :
+            this.shape.moveDown();
+            break;
+          case (KEYS.r) :
+            this.shape.rotate();
+            break;
+          default : 
+            break;
+        }
+    });
+  }
 }
+
