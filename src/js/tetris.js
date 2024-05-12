@@ -20,6 +20,7 @@ export default class Tetris {
   get elements() {
     return {
       playingField: document.querySelector('.js-playing-field'),
+      nextShape: document.querySelector('.js-next-shape'),
     };
   }
 
@@ -51,14 +52,21 @@ export default class Tetris {
   }
 
   drawShape() {
-    this.shape.draw()
+    this.shape.draw(this.elements.playingField);
+    this.drawNextShape();
     this.moveCurrentShape();
   }
 
   async moveCurrentShape() {
     if (!this.shape.moveDown()) {
       return; 
-    }   
+    } 
+    
+    if (this.shape.y === 19){
+      this.shape = this.nextShape;
+      this.drawShape();
+    }
+
     await this.sleep(700); 
     this.moveCurrentShape(); 
   }
@@ -83,5 +91,14 @@ export default class Tetris {
         }
     });
   }
-}
 
+  drawNextShape() {
+    this.clearNextShape();
+    this.nextShape = this.getRandomShape();
+    this.nextShape.draw(this.elements.nextShape);
+  }
+
+  clearNextShape() {
+    this.nextShape.blocks.forEach(block => this.elements.nextShape.removeChild(block.blockDiv)); // ymknn ghalatt
+  }
+}

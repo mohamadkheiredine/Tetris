@@ -175,3 +175,12 @@ body {
 .tetris__box_overflow_hidden {
   overflow: hidden;
 }
+
+.tetris__next-shape-container {
+  width: 150px;
+  height: 100px;
+  margin-left: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
