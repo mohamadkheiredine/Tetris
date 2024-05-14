@@ -37,8 +37,8 @@ export default class Tetris {
     let randomRotation = Math.floor(Math.random() * 4);
     
     return new shapes[randomNumberShape]({
-      x: 4,
-      y: -2,
+      x: 0,
+      y: 0,
       playingField: this.elements.playingField,
       rotation: rotationOptions[randomRotation],
       unitSize: 20,
@@ -52,6 +52,8 @@ export default class Tetris {
   }
 
   drawShape() {
+    this.shape.x = 4;
+    this.shape.y = -1;
     this.shape.draw(this.elements.playingField);
     this.drawNextShape();
     this.moveCurrentShape();
@@ -59,14 +61,11 @@ export default class Tetris {
 
   async moveCurrentShape() {
     if (!this.shape.moveDown()) {
+      this.shape = this.nextShape;
+      this.drawShape();
       return; 
     } 
     
-    if (this.shape.y === 19){
-      this.shape = this.nextShape;
-      this.drawShape();
-    }
-
     await this.sleep(700); 
     this.moveCurrentShape(); 
   }
