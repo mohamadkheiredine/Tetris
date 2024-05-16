@@ -53,7 +53,7 @@ export default class Tetris {
 
   drawShape() {
     this.shape.x = 4;
-    this.shape.y = -1;
+    this.shape.y = -2;
     this.shape.draw(this.elements.playingField);
     this.drawNextShape();
     this.moveCurrentShape();
@@ -98,6 +98,6 @@ export default class Tetris {
   }
 
   clearNextShape() {
-    this.nextShape.blocks.forEach(block => this.elements.nextShape.removeChild(block.blockDiv)); // ymknn ghalatt
+   this.nextShape.blocks.forEach(block => this.elements.nextShape.innerHTML = ''); // ymknn ghalatt
   }
 }
