@@ -98,6 +98,6 @@ export default class Tetris {
   }
 
   clearNextShape() {
-   this.nextShape.blocks.forEach(block => this.elements.nextShape.innerHTML = ''); // ymknn ghalatt
+    this.elements.nextShape.innerHTML = '';
   }
 }
