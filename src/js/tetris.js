@@ -20,6 +20,7 @@ export default class Tetris {
   get elements() {
     return {
       playingField: document.querySelector('.js-playing-field'),
+      nextShape: document.querySelector('.js-next-shape'),
     };
   }
 
@@ -36,8 +37,8 @@ export default class Tetris {
     let randomRotation = Math.floor(Math.random() * 4);
     
     return new shapes[randomNumberShape]({
-      x: 4,
-      y: -2,
+      x: 0,
+      y: 0,
       playingField: this.elements.playingField,
       rotation: rotationOptions[randomRotation],
       unitSize: 20,
@@ -51,14 +52,20 @@ export default class Tetris {
   }
 
   drawShape() {
-    this.shape.draw()
+    this.shape.x = 4;
+    this.shape.y = -2;
+    this.shape.draw(this.elements.playingField);
+    this.drawNextShape();
     this.moveCurrentShape();
   }
 
   async moveCurrentShape() {
     if (!this.shape.moveDown()) {
+      this.shape = this.nextShape;
+      this.drawShape();
       return; 
-    }   
+    } 
+    
     await this.sleep(700); 
     this.moveCurrentShape(); 
   }
@@ -83,5 +90,14 @@ export default class Tetris {
         }
     });
   }
-}
 
+  drawNextShape() {
+    this.clearNextShape();
+    this.nextShape = this.getRandomShape();
+    this.nextShape.draw(this.elements.nextShape);
+  }
+
+  clearNextShape() {
+    this.elements.nextShape.innerHTML = '';
+  }
+}

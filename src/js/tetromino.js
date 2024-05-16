@@ -22,8 +22,8 @@ export default class Tetromino {
     });
   }
 
-  draw() {
-    this.blocks.forEach(block => this.playingField.appendChild(block.getHtmlElement()));
+  draw(elements) {
+    this.blocks.forEach(block => elements.appendChild(block.getHtmlElement()));
   }
 
   checkCollision(blocks) {
@@ -47,12 +47,12 @@ export default class Tetromino {
       this.y = y;
       this.x = x;
       this.rotation = rotation;
-      this.draw();
+      this.draw(this.playingField);
       return false;
     }
     else {
       this.blocks = newBlocks;
-      this.draw();
+      this.draw(this.playingField);
       return true;
     }
   }
