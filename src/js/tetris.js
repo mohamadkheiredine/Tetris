@@ -6,6 +6,7 @@ import O from './O';
 import S from './S';
 import T from './T';
 import Z from './Z';
+import GridManager from './grid-manager';
 
 const KEYS = {
   space: 32,
@@ -17,6 +18,10 @@ const KEYS = {
 };
 
 export default class Tetris {
+  constructor(gridManager){
+    this.gridManager = gridManager;
+  }
+
   get elements() {
     return {
       playingField: document.querySelector('.js-playing-field'),
@@ -42,6 +47,7 @@ export default class Tetris {
       playingField: this.elements.playingField,
       rotation: rotationOptions[randomRotation],
       unitSize: 20,
+      gridManager: this.gridManager, 
     });
   }
 
@@ -61,6 +67,7 @@ export default class Tetris {
 
   async moveCurrentShape() {
     if (!this.shape.moveDown()) {
+      saveBlocks();
       this.shape = this.nextShape;
       this.drawShape();
       return; 
@@ -99,5 +106,9 @@ export default class Tetris {
 
   clearNextShape() {
     this.elements.nextShape.innerHTML = '';
+  }
+
+  saveBlocks() {
+    this.gridManager.blocks.push(this.shape.blocks);
   }
 }

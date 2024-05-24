@@ -27,9 +27,22 @@ export default class Tetromino {
   }
 
   checkCollision(blocks) {
-    return !blocks.every(block => {
-      return block.y <= 19 && block.x >= 0 && block.x <= 9;
-    });
+    // return !blocks.every(block => {
+    //   return block.y <= 19 && block.x >= 0 && block.x <= 9 && block.x !== this.gridManager.blocks
+    // });
+    let helper = 0; //ghayer l esmm
+    let helperManager = 0;
+    for (let i = 0 ; i < blocks.length ; i++) {
+      if (blocks[i].y > 19 && blocks[i].x < 0 && blocks[i].x > 9) {
+            helper = 1;
+      }
+      for (let j = 0 ; j < this.gridManager.blocks.length ; j++) {
+      if (blocks[i].x === this.gridManager.blocks[i][j]) {
+        helperManager = 1;
+      }
+      }
+    }
+    return helper || helperManager;
   }
 
   clearBlocks() { 
