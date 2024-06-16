@@ -67,7 +67,7 @@ export default class Tetris {
 
   async moveCurrentShape() {
     if (!this.shape.moveDown()) {
-      saveBlocks();
+      this.saveBlocks();
       this.shape = this.nextShape;
       this.drawShape();
       return; 
