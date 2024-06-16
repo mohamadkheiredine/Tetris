@@ -1,12 +1,13 @@
 import Block from './block';
 
 export default class Tetromino {
-  constructor({ x, y, playingField, rotation, unitSize }) {
+  constructor({ x, y, playingField, rotation, unitSize, gridManager }) {
     this.x = x;
     this.y = y;
     this.playingField = playingField;
     this.rotation = rotation;
     this.unitSize = unitSize;
+    this.gridManager = gridManager;
     this.blocks = this.createBlocks();
   }
 
@@ -27,7 +28,7 @@ export default class Tetromino {
   }
 
   checkCollision(blocks) {
-    return !blocks.every(block => block.y <= 19 && block.x >= 0 && block.x <= 9) || this.gridManager.blocks.some(block => blocks.find(b => b.x === block.x && b.y === block.y));
+    return !blocks.every(block => block.x >= 0 && block.x <= 9 && block.y <= 19) || this.gridManager.blocks.some(block => blocks.find(b => b.x === block.x && b.y === block.y));
   }
 
   clearBlocks() { 

@@ -32,8 +32,8 @@ export default class GridManager {
   manageGrid() {
     let linesObject = this.getLinesToClear();
     for (let block of linesObject.blocksToRemove) {
-      block = this.playingField.removeChild(block.blockDiv);
-      linesObject.blocksToRemove.splice(i,1);
+      this.playingField.removeChild(block.blockDiv);
+      linesObject.blocksToRemove.splice(this.blocks.indexOf(block),1);
     }
   }
 }

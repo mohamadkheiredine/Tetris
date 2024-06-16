@@ -109,7 +109,7 @@ export default class Tetris {
   }
 
   saveBlocks() {
-    this.gridManager.blocks.push(this.shape.blocks);
+    this.gridManager.blocks = [...this.gridManager.blocks, ...this.shape.blocks];
     this.gridManager.manageGrid();
   }
 }
