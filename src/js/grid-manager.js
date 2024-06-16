@@ -33,7 +33,7 @@ export default class GridManager {
     let linesObject = this.getLinesToClear();
     for (let block of linesObject.blocksToRemove) {
       this.playingField.removeChild(block.blockDiv);
-      linesObject.blocksToRemove.splice(this.blocks.indexOf(block),1);
+      this.blocks.splice(this.blocks.indexOf(block),1);
     }
   }
 }
