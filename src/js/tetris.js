@@ -18,7 +18,7 @@ const KEYS = {
 };
 
 export default class Tetris {
-  constructor(gridManager){
+  constructor({gridManager}){
     this.gridManager = gridManager;
   }
 
@@ -110,5 +110,6 @@ export default class Tetris {
 
   saveBlocks() {
     this.gridManager.blocks.push(this.shape.blocks);
+    this.gridManager.manageGrid();
   }
 }

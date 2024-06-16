@@ -26,25 +26,9 @@ export default class Tetromino {
     this.blocks.forEach(block => elements.appendChild(block.getHtmlElement()));
   }
 
- // checkCollision(blocks) {
-    // return !blocks.every(block => {
-    //   return block.y <= 19 && block.x >= 0 && block.x <= 9 && block.x !== this.gridManager.blocks
-    // });
-    checkCollision(blocks) {
-      for (let block of blocks) {
-        // Check for collision with walls and floor
-        if (block.y > 19 || block.x < 0 || block.x > 9) {
-          return true;
-        }
-        // Check for collision with other blocks in the grid
-        for (let gridBlock of this.gridManager.blocks) {
-          if (block.x === gridBlock.x && block.y === gridBlock.y) {
-            return true;
-          }
-        }
-      }
-      return false;
-    }
+  checkCollision(blocks) {
+    return !blocks.every(block => block.y <= 19 && block.x >= 0 && block.x <= 9) || this.gridManager.blocks.some(block => blocks.find(b => b.x === block.x && b.y === block.y));
+  }
 
   clearBlocks() { 
     this.blocks.forEach(block => {
