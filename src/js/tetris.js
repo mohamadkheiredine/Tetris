@@ -18,16 +18,19 @@ const KEYS = {
 };
 
 export default class Tetris {
-  constructor({gridManager}){
+  constructor({gridManager, score}){
     this.gridManager = gridManager;
+    this.score = 0;
   }
 
   get elements() {
     return {
       playingField: document.querySelector('.js-playing-field'),
       nextShape: document.querySelector('.js-next-shape'),
+      scoreField: document.querySelector('.js-score'),
     };
   }
+  
 
   sleep(time) {
     return new Promise(resolve => {
@@ -111,5 +114,7 @@ export default class Tetris {
   saveBlocks() {
     this.gridManager.blocks = [...this.gridManager.blocks, ...this.shape.blocks];
     this.gridManager.manageGrid();
+    let numberOfRemovedLines = this.gridManager.manageGrid();
+    this.score = numberOfRemovedLines;
   }
 }
