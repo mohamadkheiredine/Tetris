@@ -18,7 +18,7 @@ const KEYS = {
 };
 
 export default class Tetris {
-  constructor({gridManager, score}){
+  constructor({gridManager}){
     this.gridManager = gridManager;
     this.score = 0;
   }
@@ -113,8 +113,8 @@ export default class Tetris {
 
   saveBlocks() {
     this.gridManager.blocks = [...this.gridManager.blocks, ...this.shape.blocks];
-    this.gridManager.manageGrid();
     let numberOfRemovedLines = this.gridManager.manageGrid();
-    this.score = numberOfRemovedLines;
+    this.score += numberOfRemovedLines;
+    this.elements.scoreField.innerHTML = this.score;
   }
 }
