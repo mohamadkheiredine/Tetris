@@ -21,6 +21,8 @@ export default class Tetris {
   constructor({gridManager}){
     this.gridManager = gridManager;
     this.score = 0;
+    this.round = 1;
+    this.moveFast = false;
   }
 
   get elements() {
@@ -73,10 +75,16 @@ export default class Tetris {
       this.saveBlocks();
       this.shape = this.nextShape;
       this.drawShape();
+      this.moveFast = false;
+      this.round++;
       return; 
     } 
-    
-    await this.sleep(700); 
+    if (this.moveFast) {
+      await this.sleep(5);
+    }
+    else {
+      await this.sleep(this.getSleepDuration()); 
+    }
     this.moveCurrentShape(); 
   }
   
@@ -94,6 +102,10 @@ export default class Tetris {
             break;
           case (KEYS.r) :
             this.shape.rotate();
+            break;
+          case (KEYS.up) :
+            this.moveFast = true;
+            this.moveCurrentShape();
             break;
           default : 
             break;
@@ -116,5 +128,9 @@ export default class Tetris {
     let numberOfRemovedLines = this.gridManager.manageGrid();
     this.score += numberOfRemovedLines;
     this.elements.scoreField.innerHTML = this.score;
+  }
+
+  getSleepDuration() {
+    return 1000 * Math.pow(0.9, Math.floor(this.round / 10));
   }
 }
