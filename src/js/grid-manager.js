@@ -1,5 +1,6 @@
 import Tetris from "./tetris";
 import Tetromino from "./tetromino";
+import Block from "./block";
 
 export default class GridManager {
   constructor ({playingField}) {
@@ -35,5 +36,30 @@ export default class GridManager {
       this.playingField.removeChild(block.blockDiv);
       this.blocks.splice(this.blocks.indexOf(block),1);
     }
+    if (linesObject.blocksToRemove.length > 0){
+      this.blocks = this.reorderBlocks(linesObject.lineIndices);
+    }
+    return linesObject.blocksToRemove.length;
+  }
+
+  reorderBlocks(lineIndices) {
+    this.blocks.forEach(block => {
+      this.playingField.removeChild(block.blockDiv);
+    });
+  
+    let newBlocks = this.blocks.map(block => {
+      return new Block({
+        x: block.x,
+        y: block.y + lineIndices.filter(y => y > block.y).length,
+        unitSize: block.unitSize,
+        color: block.color
+      });
+    });
+  
+    newBlocks.forEach(block => {
+      this.playingField.appendChild(block.getHtmlElement());
+    });
+  
+    return newBlocks;
   }
 }
