@@ -36,13 +36,14 @@ export default class GridManager {
       this.playingField.removeChild(block.blockDiv);
       this.blocks.splice(this.blocks.indexOf(block),1);
     }
-    this.blocks = this.reorderBlocks();
+    if (linesObject.blocksToRemove.length > 0){
+      this.blocks = this.reorderBlocks();
+    }
     return linesObject.blocksToRemove.length;
   }
 
   reorderBlocks() {
-    let linesObject = this.getLinesToClear();
-    let linesIndexes = linesObject.lineIndices;
+    let linesIndexes = this.getLinesToClear().lineIndices;
   
     this.blocks.forEach(block => {
       this.playingField.removeChild(block.blockDiv);
@@ -51,7 +52,7 @@ export default class GridManager {
     let newBlocks = this.blocks.map(block => {
       return new Block({
         x: block.x,
-        y:  linesIndexes.every(y => block.y > y) ? block.y : block.y + linesIndexes.filter(y => block.y < y).length,
+        y: block.y + linesIndexes.filter(y => y > block.y).length,
         unitSize: block.unitSize,
         color: block.color
       });
