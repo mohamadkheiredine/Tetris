@@ -17,12 +17,15 @@ const KEYS = {
   r: 82
 };
 
+const FASTSLEEP = 5;
+
 export default class Tetris {
   constructor({gridManager}){
     this.gridManager = gridManager;
     this.score = 0;
     this.round = 1;
     this.moveFast = false;
+    this.sleepID = {};
   }
 
   get elements() {
@@ -36,7 +39,14 @@ export default class Tetris {
 
   sleep(time) {
     return new Promise(resolve => {
-      setTimeout(() => resolve(), time);
+      let id = this.sleepID;
+      setTimeout(() => {
+        if (id === this.sleepID) {
+          resolve(true);
+        } else {
+          resolve(false)
+        }
+      }, time);
     });
   }
 
@@ -72,20 +82,17 @@ export default class Tetris {
 
   async moveCurrentShape() {
     if (!this.shape.moveDown()) {
+      this.moveFast = false;
       this.saveBlocks();
+      this.round++;
       this.shape = this.nextShape;
       this.drawShape();
-      this.moveFast = false;
-      this.round++;
       return; 
     } 
-    if (this.moveFast) {
-      await this.sleep(5);
+    const canContinue = await this.sleep(this.moveFast ? FASTSLEEP : this.getSleepDuration());
+    if (canContinue) {
+      this.moveCurrentShape();
     }
-    else {
-      await this.sleep(this.getSleepDuration()); 
-    }
-    this.moveCurrentShape(); 
   }
   
   setupListeners(){
@@ -104,6 +111,7 @@ export default class Tetris {
             this.shape.rotate();
             break;
           case (KEYS.up) :
+            this.sleepID = {};
             this.moveFast = true;
             this.moveCurrentShape();
             break;
