@@ -17,10 +17,15 @@ const KEYS = {
   r: 82
 };
 
+const FASTSLEEP = 5;
+
 export default class Tetris {
   constructor({gridManager}){
     this.gridManager = gridManager;
     this.score = 0;
+    this.round = 1;
+    this.moveFast = false;
+    this.sleepID = {};
   }
 
   get elements() {
@@ -34,7 +39,14 @@ export default class Tetris {
 
   sleep(time) {
     return new Promise(resolve => {
-      setTimeout(() => resolve(), time);
+      let id = this.sleepID;
+      setTimeout(() => {
+        if (id === this.sleepID) {
+          resolve(true);
+        } else {
+          resolve(false)
+        }
+      }, time);
     });
   }
 
@@ -70,14 +82,17 @@ export default class Tetris {
 
   async moveCurrentShape() {
     if (!this.shape.moveDown()) {
+      this.moveFast = false;
       this.saveBlocks();
+      this.round++;
       this.shape = this.nextShape;
       this.drawShape();
       return; 
     } 
-    
-    await this.sleep(700); 
-    this.moveCurrentShape(); 
+    const canContinue = await this.sleep(this.moveFast ? FASTSLEEP : this.getSleepDuration());
+    if (canContinue) {
+      this.moveCurrentShape();
+    }
   }
   
   setupListeners(){
@@ -94,6 +109,11 @@ export default class Tetris {
             break;
           case (KEYS.r) :
             this.shape.rotate();
+            break;
+          case (KEYS.up) :
+            this.sleepID = {};
+            this.moveFast = true;
+            this.moveCurrentShape();
             break;
           default : 
             break;
@@ -116,5 +136,9 @@ export default class Tetris {
     let numberOfRemovedLines = this.gridManager.manageGrid();
     this.score += numberOfRemovedLines;
     this.elements.scoreField.innerHTML = this.score;
+  }
+
+  getSleepDuration() {
+    return 1000 * Math.pow(0.9, Math.floor(this.round / 10));
   }
 }
