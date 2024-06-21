@@ -33,6 +33,8 @@ export default class Tetris {
       playingField: document.querySelector('.js-playing-field'),
       nextShape: document.querySelector('.js-next-shape'),
       scoreField: document.querySelector('.js-score'),
+      highScore: document.querySelector('.js-high-score'),
+      gameOver: document.querySelector('.js-game-over'),
     };
   }
   
@@ -85,10 +87,16 @@ export default class Tetris {
       this.moveFast = false;
       this.saveBlocks();
       this.round++;
-      this.shape = this.nextShape;
-      this.drawShape();
+      if (this.checkGameOver()) {
+        this.onGameOver();
+      }
+      else {
+        this.shape = this.nextShape;
+        this.drawShape();
+      }
       return; 
-    } 
+    }
+
     const canContinue = await this.sleep(this.moveFast ? FASTSLEEP : this.getSleepDuration());
     if (canContinue) {
       this.moveCurrentShape();
@@ -141,4 +149,34 @@ export default class Tetris {
   getSleepDuration() {
     return 1000 * Math.pow(0.9, Math.floor(this.round / 10));
   }
+
+  checkGameOver() {
+    return this.gridManager.blocks.some(block => block.y === 0);
+  }
+
+
+  onGameOver() {
+    let high_score = parseInt(this.elements.highScore.textContent);
+
+    if (isNaN(high_score)) {
+        high_score = this.score;
+    }
+
+    if (this.score > high_score) {
+        high_score = this.score;
+    }
+    
+    this.elements.highScore.textContent = high_score.toString(); 
+
+    localStorage.setItem('tetrisHighScore', high_score.toString()); 
+
+    this.elements.gameOver.innerHTML = 'GAME OVER';
+  }
+
+  loadHighScore() {
+    const storedHighScore = localStorage.getItem('tetrisHighScore');
+    if (storedHighScore) {
+      this.elements.highScore.textContent = storedHighScore;
+    }
+}
 }
