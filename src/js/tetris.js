@@ -26,6 +26,7 @@ export default class Tetris {
     this.round = 1;
     this.moveFast = false;
     this.sleepID = {};
+    this.highScore = 0;
   }
 
   get elements() {
@@ -156,27 +157,24 @@ export default class Tetris {
 
 
   onGameOver() {
-    let high_score = parseInt(this.elements.highScore.textContent);
+    this.elements.highScore.style.display = 'flex';
+    this.elements.highScore.style.justifyContent = 'center';
+    this.elements.highScore.style.alignItems = 'center';
 
-    if (isNaN(high_score)) {
-        high_score = this.score;
-    }
+    this.elements.gameOver.style.display = 'flex';
+    this.elements.gameOver.style.justifyContent = 'center';
+    this.elements.gameOver.style.alignItems = 'center';
 
-    if (this.score > high_score) {
-        high_score = this.score;
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
     }
     
-    this.elements.highScore.textContent = high_score.toString(); 
+    this.elements.highScore.textContent = this.highScore; 
 
-    localStorage.setItem('tetrisHighScore', high_score.toString()); 
-
-    this.elements.gameOver.innerHTML = 'GAME OVER';
+    localStorage.setItem('tetrisHighScore', this.highScore); 
   }
 
   loadHighScore() {
-    const storedHighScore = localStorage.getItem('tetrisHighScore');
-    if (storedHighScore) {
-      this.elements.highScore.textContent = storedHighScore;
-    }
-}
+    this.highScore = localStorage.getItem('tetrisHighScore') || 0;
+  }
 }
