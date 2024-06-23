@@ -104,30 +104,31 @@ export default class Tetris {
     }
   }
   
-  setupListeners(){
-    document.addEventListener('keydown', event => {
-        switch(event.keyCode) {
-          case (KEYS.left) :
-            this.shape.moveLeft();
-            break;
-          case (KEYS.right) :
-            this.shape.moveRight();
-            break;
-          case (KEYS.down) :
-            this.shape.moveDown();
-            break;
-          case (KEYS.r) :
-            this.shape.rotate();
-            break;
-          case (KEYS.up) :
-            this.sleepID = {};
-            this.moveFast = true;
-            this.moveCurrentShape();
-            break;
-          default : 
-            break;
-        }
-    });
+  setupListeners() {
+    this.onKeyDown = event => {
+      switch (event.keyCode) {
+        case KEYS.left:
+          this.shape.moveLeft();
+          break;
+        case KEYS.right:
+          this.shape.moveRight();
+          break;
+        case KEYS.down:
+          this.shape.moveDown();
+          break;
+        case KEYS.up:
+          this.sleepID = {};
+          this.moveFast = true;
+          this.moveCurrentShape();
+          break;
+        case KEYS.r:
+          this.shape.rotate();
+          break;
+        default:
+          break;
+      }
+    };
+    document.addEventListener('keydown', this.onKeyDown);
   }
 
   drawNextShape() {
@@ -176,5 +177,10 @@ export default class Tetris {
 
   loadHighScore() {
     this.highScore = localStorage.getItem('tetrisHighScore') || 0;
+    this.elements.highScore.innerHTML = this.highScore;
+  }
+
+  removeListeners() {
+    document.removeEventListener('keydown', this.onKeyDown);
   }
 }
