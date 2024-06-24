@@ -173,6 +173,7 @@ export default class Tetris {
     this.elements.highScore.textContent = this.highScore; 
 
     localStorage.setItem('tetrisHighScore', this.highScore); 
+    this.removeListeners();
   }
 
   loadHighScore() {
