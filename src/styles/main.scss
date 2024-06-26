@@ -187,3 +187,11 @@ body {
 .tetris__next-shape-block {
   position: relative;
 }
+
+.tetris__action-game-over {
+  color: red;
+  font-weight: bold;
+  font-size: 25px;
+  display: none;
+  margin-top: 20px;
+}

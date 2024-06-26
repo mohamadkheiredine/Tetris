@@ -26,6 +26,7 @@ export default class Tetris {
     this.round = 1;
     this.moveFast = false;
     this.sleepID = {};
+    this.highScore = 0;
   }
 
   get elements() {
@@ -33,6 +34,8 @@ export default class Tetris {
       playingField: document.querySelector('.js-playing-field'),
       nextShape: document.querySelector('.js-next-shape'),
       scoreField: document.querySelector('.js-score'),
+      highScore: document.querySelector('.js-high-score'),
+      gameOver: document.querySelector('.js-game-over'),
     };
   }
   
@@ -85,40 +88,47 @@ export default class Tetris {
       this.moveFast = false;
       this.saveBlocks();
       this.round++;
-      this.shape = this.nextShape;
-      this.drawShape();
+      if (this.checkGameOver()) {
+        this.onGameOver();
+      }
+      else {
+        this.shape = this.nextShape;
+        this.drawShape();
+      }
       return; 
-    } 
+    }
+
     const canContinue = await this.sleep(this.moveFast ? FASTSLEEP : this.getSleepDuration());
     if (canContinue) {
       this.moveCurrentShape();
     }
   }
   
-  setupListeners(){
-    document.addEventListener('keydown', event => {
-        switch(event.keyCode) {
-          case (KEYS.left) :
-            this.shape.moveLeft();
-            break;
-          case (KEYS.right) :
-            this.shape.moveRight();
-            break;
-          case (KEYS.down) :
-            this.shape.moveDown();
-            break;
-          case (KEYS.r) :
-            this.shape.rotate();
-            break;
-          case (KEYS.up) :
-            this.sleepID = {};
-            this.moveFast = true;
-            this.moveCurrentShape();
-            break;
-          default : 
-            break;
-        }
-    });
+  setupListeners() {
+    this.onKeyDown = event => {
+      switch (event.keyCode) {
+        case KEYS.left:
+          this.shape.moveLeft();
+          break;
+        case KEYS.right:
+          this.shape.moveRight();
+          break;
+        case KEYS.down:
+          this.shape.moveDown();
+          break;
+        case KEYS.up:
+          this.sleepID = {};
+          this.moveFast = true;
+          this.moveCurrentShape();
+          break;
+        case KEYS.r:
+          this.shape.rotate();
+          break;
+        default:
+          break;
+      }
+    };
+    document.addEventListener('keydown', this.onKeyDown);
   }
 
   drawNextShape() {
@@ -140,5 +150,38 @@ export default class Tetris {
 
   getSleepDuration() {
     return 1000 * Math.pow(0.9, Math.floor(this.round / 10));
+  }
+
+  checkGameOver() {
+    return this.gridManager.blocks.some(block => block.y === 0);
+  }
+
+
+  onGameOver() {
+    this.elements.highScore.style.display = 'flex';
+    this.elements.highScore.style.justifyContent = 'center';
+    this.elements.highScore.style.alignItems = 'center';
+
+    this.elements.gameOver.style.display = 'flex';
+    this.elements.gameOver.style.justifyContent = 'center';
+    this.elements.gameOver.style.alignItems = 'center';
+
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+    }
+    
+    this.elements.highScore.textContent = this.highScore; 
+
+    localStorage.setItem('tetrisHighScore', this.highScore); 
+    this.removeListeners();
+  }
+
+  loadHighScore() {
+    this.highScore = localStorage.getItem('tetrisHighScore') || 0;
+    this.elements.highScore.innerHTML = this.highScore;
+  }
+
+  removeListeners() {
+    document.removeEventListener('keydown', this.onKeyDown);
   }
 }

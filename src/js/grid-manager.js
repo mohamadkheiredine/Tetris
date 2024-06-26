@@ -39,7 +39,7 @@ export default class GridManager {
     if (linesObject.blocksToRemove.length > 0){
       this.blocks = this.reorderBlocks(linesObject.lineIndices);
     }
-    return linesObject.blocksToRemove.length;
+    return linesObject.lineIndices.length;
   }
 
   reorderBlocks(lineIndices) {

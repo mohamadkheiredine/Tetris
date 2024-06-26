@@ -8,6 +8,7 @@ import GridManager from "./js/grid-manager";
   const playingField = document.querySelector('.js-playing-field');
   let gridManager = new GridManager({ playingField });
   let tetris = new Tetris({ gridManager });
+  tetris.loadHighScore();
   document.querySelector('.js-new-game').addEventListener('click', () => {
     tetris.start();
   });
