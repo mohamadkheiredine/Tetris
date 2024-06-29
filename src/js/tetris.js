@@ -26,7 +26,6 @@ export default class Tetris {
     this.round = 1;
     this.moveFast = false;
     this.sleepID = {};
-    this.sleeep = {};
     this.highScore = 0;
     this.isPaused = false;
     this.isRunning = false;
@@ -75,11 +74,12 @@ export default class Tetris {
   }
 
   start() {
+    this.sleepID = {};
     this.setupListeners();
     this.shape = this.getRandomShape();
     this.drawShape();
     this.elements.pauseButton.style.visibility = 'visible';
-    this.elements.newGame.textContent = 'Re-Start';
+    this.elements.newGame.textContent = 'Restart';
     this.isRunning = true;
   }
 
@@ -92,32 +92,26 @@ export default class Tetris {
   }
 
   async moveCurrentShape() {
-    console.log('here we enter on the moveCurrentShape function');
+    if (this.gameOver) {
+      return;
+    }
+
     if (!this.shape.moveDown()) {
       this.moveFast = false;
       this.saveBlocks();
-      this.round++;
       if (this.checkGameOver()) {
         this.onGameOver();
       } else {
+        this.round++;
         this.shape = this.nextShape;
         this.drawShape();
       }
       return;
     }
-    console.log('here the first if statement is terminated');
-    console.log('-------------------------------------------------------------');
-
     const canContinue = await this.sleep(this.moveFast ? FASTSLEEP : this.getSleepDuration());
-    console.log('continue after sleep');
     if (canContinue && !this.isPaused) {
       this.moveCurrentShape();
     }
-
-    if (this.gameOver) {
-      return;
-    }
-
   }
 
   setupListeners() {
@@ -148,8 +142,6 @@ export default class Tetris {
     };
     document.addEventListener('keydown', this.onKeyDown);
     this.elements.pauseButton.addEventListener('click', () => this.togglePause());
-    this.elements.newGame.addEventListener('click', () => this.restart());
-
   }
 
   drawNextShape() {
@@ -217,15 +209,19 @@ export default class Tetris {
     this.sleepID = {};
     this.clearNextShape();
     this.elements.gameOver.style.display = 'none';
+    this.elements.scoreField.innerHTML = this.score;
+    this.elements.pauseButton.innerHTML = 'Pause';
   }
 
   togglePause() {
-    this.isPaused = !this.isPaused;
-    this.elements.pauseButton.textContent = this.isPaused ? 'Continue' : 'Pause';
-    if (!this.isPaused) {
-        this.moveFast = false; 
-        this.sleepID = {}; 
-        this.moveCurrentShape();
+    this.sleepID = {};
+    if (this.isPaused) {
+      this.elements.pauseButton.innerHTML = 'Pause';
+      this.isPaused = false;
+      this.moveCurrentShape();
+    } else {
+      this.elements.pauseButton.innerHTML = 'Continue';
+      this.isPaused = true;
     }
 }
 
@@ -234,7 +230,6 @@ export default class Tetris {
     this.removeListeners();
     this.clearAll();
     this.moveFast = false;
-    this.sleepID = {};
     this.start();
   }
 
