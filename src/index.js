@@ -10,6 +10,13 @@ import GridManager from "./js/grid-manager";
   let tetris = new Tetris({ gridManager });
   tetris.loadHighScore();
   document.querySelector('.js-new-game').addEventListener('click', () => {
-    tetris.start();
+    if (!tetris.isRunning) {
+      if (tetris.gameOver) {
+        tetris.clearAll();
+      }
+      tetris.start();
+    } else {
+      tetris.restart();
+    }
   });
 })();
