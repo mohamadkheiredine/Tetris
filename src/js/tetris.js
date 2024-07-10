@@ -41,6 +41,7 @@ export default class Tetris {
       gameOver: document.querySelector('.js-game-over'),
       pauseButton: document.querySelector('.js-pause'),
       newGame: document.querySelector('.js-new-game'),
+      tetrisWord: document.querySelector('.js-tetris-word'),
     };
   }
 
@@ -159,6 +160,9 @@ export default class Tetris {
     const numberOfRemovedLines = this.gridManager.manageGrid();
     this.score += numberOfRemovedLines;
     this.elements.scoreField.innerHTML = this.score;
+    if (this.onClearFourLine()) {
+      this.score += 8;
+    }
   }
 
   getSleepDuration() {
@@ -233,4 +237,9 @@ export default class Tetris {
     this.start();
   }
 
+  onClearFourLine() {
+    if (this.gridManager.manageGrid() === 4) {
+      tetrisWord.style.display = 'block';
+    }
+  }
 }
