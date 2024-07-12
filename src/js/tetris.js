@@ -75,13 +75,14 @@ export default class Tetris {
   }
 
   start() {
+    this.isRunning = true;
+    this.gameOver = false;
     this.sleepID = {};
     this.setupListeners();
     this.shape = this.getRandomShape();
     this.drawShape();
     this.elements.pauseButton.style.visibility = 'visible';
     this.elements.newGame.textContent = 'Restart';
-    this.isRunning = true;
   }
 
   drawShape() {
@@ -142,7 +143,8 @@ export default class Tetris {
       }
     };
     document.addEventListener('keydown', this.onKeyDown);
-    this.elements.pauseButton.addEventListener('click', () => this.togglePause());
+    this.onPause = () => this.togglePause();
+    this.elements.pauseButton.addEventListener('click', this.onPause);
   }
 
   drawNextShape() {
@@ -162,11 +164,11 @@ export default class Tetris {
     this.elements.scoreField.innerHTML = this.score;
     if (numberOfRemovedLines === 4) {
       this.onClearFourLine();
-      this.score += 8;
+      this.score += 4;
       this.elements.scoreField.innerHTML = this.score;
       setTimeout(() => {
         this.elements.tetrisWord.style.display = 'none';
-      },4000);
+      },1000);
     }
   }
 
@@ -206,6 +208,7 @@ export default class Tetris {
 
   removeListeners() {
     document.removeEventListener('keydown', this.onKeyDown);
+    this.elements.pauseButton.removeEventListener('click', this.onPause);
   }
 
   clearAll() {
