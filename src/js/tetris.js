@@ -160,8 +160,13 @@ export default class Tetris {
     const numberOfRemovedLines = this.gridManager.manageGrid();
     this.score += numberOfRemovedLines;
     this.elements.scoreField.innerHTML = this.score;
-    if (this.onClearFourLine()) {
+    if (numberOfRemovedLines === 4) {
+      this.onClearFourLine();
       this.score += 8;
+      this.elements.scoreField.innerHTML = this.score;
+      setTimeout(() => {
+        this.elements.tetrisWord.style.display = 'none';
+      },4000);
     }
   }
 
@@ -238,8 +243,6 @@ export default class Tetris {
   }
 
   onClearFourLine() {
-    if (this.gridManager.manageGrid() === 4) {
-      tetrisWord.style.display = 'block';
-    }
+    this.elements.tetrisWord.style.display = 'block';
   }
 }
