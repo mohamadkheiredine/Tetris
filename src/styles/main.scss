@@ -221,3 +221,65 @@ body {
     transform: scale(20);
   }
 }
+.tetris__legend {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tetris__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tetris_legend-icon {
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+}
+
+.tetris_legend-icon_is-left-icon {
+  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/arrow-left.svg');
+}
+
+.tetris_legend-icon_is-right-icon {
+  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/arrow-right.svg');
+}
+
+.tetris_legend-icon_is-down-icon {
+  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/arrow-down.svg');
+}
+
+.tetris_legend-icon_is-speed-up-icon {
+  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/arrow-up.svg');
+}
+
+.tetris_legend-icon_is-rotate-icon {
+  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/rotate.svg');
+}
+
+.tetris_legend-icon_is-pause-continue-icon {
+  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/pause.svg');
+}
+
+.tetris__footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  top: 100%;
+  margin-top: 90px;
+  border-top: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tetris__developer-info {
+  padding: 10px 20px;
+}
+
+.company-logo img {
+  width: auto;
+  max-height: 40px;
+}

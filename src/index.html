@@ -7,30 +7,79 @@
 </head>
 <body>
   <div class="tetris">
-    <div class="tetris__tetris-word js-tetris-word">TETRIS</div>
-    <div class="tetris__header">
-      <h1 class="tetris__header-title">TETRIS GAME</h1>
-    </div>
-    <div class="tetris__body">
-       <div class="tetris__box">
-        <div class="tetris__next-shape">
-          <p>Next Shape</p>
-          <div class="tetris__next-shape-container">
-            <div class="tetris__next-shape-block js-next-shape"></div>
+    <div class="tetris__content">
+      <div class="tetris__tetris-word js-tetris-word">TETRIS</div>
+      
+      <div class="tetris__header">
+        <h1 class="tetris__header-title">TETRIS GAME</h1>
+      </div>
+      
+      <div class="tetris__body">
+        <div class="tetris__box">
+          <div class="tetris__next-shape">
+            <p>Next Shape</p>
+            <div class="tetris__next-shape-container">
+              <div class="tetris__next-shape-block js-next-shape"></div>
+            </div>
           </div>
         </div>
-       </div>
-       <div class="tetris__box tetris__box_border-size_3 tetris__box_position_relative js-playing-field tetris__box_overflow_hidden"></div>
-       <div class="tetris__box">
-         <div class="tetris__score-label">Score</div>
-         <div class="tetris__score-value js-score">0</div>
-         <div class="tetris__score-label">High Score</div>
-         <div class="tetris__score-value js-high-score">0</div>
-         <div class="tetris__action-button js-new-game">New Game</div>
-         <div class="tetris__action-button tetris__action-button_is-pause-button js-pause">Pause</div>
-         <div class="tetris__action-game-over js-game-over">GAME OVER</div>
-       </div>
+        
+        <div class="tetris__box tetris__box_border-size_3 tetris__box_position_relative js-playing-field tetris__box_overflow_hidden"></div>
+        
+        <div class="tetris__box">
+          <div class="tetris__score-label">Score</div>
+          <div class="tetris__score-value js-score">0</div>
+          <div class="tetris__score-label">High Score</div>
+          <div class="tetris__score-value js-high-score">0</div>
+          <div class="tetris__action-button js-new-game">New Game</div>
+          <div class="tetris__action-button tetris__action-button_is-pause-button js-pause">Pause</div>
+          <div class="tetris__action-game-over js-game-over">GAME OVER</div>
+        </div>
+      </div>
+      
+      <div class="tetris__legend">
+        <div class="tetris__legend-item">
+          <div class="tetris_legend-icon tetris_legend-icon_is-left-icon"></div>
+          <div class="tetris__legend-label">Left</div>
+        </div>
+        <div class="tetris__legend-item">
+          <div class="tetris_legend-icon tetris_legend-icon_is-right-icon"></div>
+          <div class="tetris__legend-label">Right</div>
+        </div>
+        <div class="tetris__legend-item">
+          <div class="tetris_legend-icon tetris_legend-icon_is-down-icon"></div>
+          <div class="tetris__legend-label">Down</div>
+        </div>
+        <div class="tetris__legend-item">
+          <div class="tetris_legend-icon tetris_legend-icon_is-speed-up-icon"></div>       
+          <div class="tetris__legend-label">Speed Up</div>
+        </div>
+        <div class="tetris__legend-item">
+          <div class="tetris_legend-icon tetris_legend-icon_is-rotate-icon"></div>
+          <div class="tetris__legend-label">Rotate</div>
+        </div>
+        <div class="tetris__legend-item">
+          <div class="tetris_legend-icon tetris_legend-icon_is-pause-continue-icon"></div>
+          <div class="tetris__legend-label">Pause/Continue</div>
+        </div>
+      </div>
+      
     </div>
+    <!-- end of tetris content -->
+    <div class="tetris__footer">
+      <div class="tetris__developer-info">
+        Developed by Mohamad Maarouf Kheiredine with HTML, CSS, and JavaScript during an internship at <a href="https://www.boomowl.com" target="_blank">Boomowl</a> © 2024
+      </div>
+      <div class="company">
+        <div class="company-logo">
+          <a href="https://www.boomowl.com" target="_blank">
+            <img src="C:/Users/Mohammed kh/work/Tetris/src/asserts/boomowl.png" alt="Boomowl Logo">
+          </a>
+        </div>
+      </div>
+    </div>    
+    
   </div>
 </body>
+
 </html>
