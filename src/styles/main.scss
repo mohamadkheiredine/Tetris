@@ -241,45 +241,70 @@ body {
 }
 
 .tetris_legend-icon_is-left-icon {
-  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/arrow-left.svg');
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(' ../asserts/arrow-left.svg');
 }
 
 .tetris_legend-icon_is-right-icon {
-  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/arrow-right.svg');
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(' ../asserts/arrow-right.svg');
 }
 
 .tetris_legend-icon_is-down-icon {
-  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/arrow-down.svg');
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(' ../asserts/arrow-down.svg');
 }
 
 .tetris_legend-icon_is-speed-up-icon {
-  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/arrow-up.svg');
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(' ../asserts/arrow-up.svg');
 }
 
 .tetris_legend-icon_is-rotate-icon {
-  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/rotate.svg');
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(' ../asserts/rotate.svg');
 }
 
 .tetris_legend-icon_is-pause-continue-icon {
-  background-image: url(' C:/Users/Mohammed kh/work/Tetris/src/asserts/pause.svg');
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(' ../asserts/pause.svg');
 }
 
 .tetris__footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  top: 100%;
-  margin-top: 90px;
+  margin-top: 70px;
   border-top: 2px solid black;
   display: flex;
   justify-content: space-between;
 }
 
 .tetris__developer-info {
-  padding: 10px 20px;
+  padding: 10px;
 }
 
-.company-logo img {
-  width: auto;
-  max-height: 40px;
+.company-logo {
+  background-image: url(../asserts/boomowl.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin-left: 300px;
+  width: 100px;
+  height: 40px;
 }
