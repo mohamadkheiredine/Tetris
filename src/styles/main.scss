@@ -12,7 +12,11 @@ body {
   display: flex;
   flex-direction: column; 
   width: 100%; 
-  height: 100%; 
+  height: 100vh; 
+}
+
+.tetris__content {
+  flex: 1;
 }
 
 .tetris__header {
@@ -221,6 +225,7 @@ body {
     transform: scale(20);
   }
 }
+
 .tetris__legend {
   display: flex;
   justify-content: center;
@@ -245,7 +250,7 @@ body {
   height: 1em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-image: url(' ../asserts/arrow-left.svg');
+  background-image: url('../asserts/arrow-left.svg');
 }
 
 .tetris_legend-icon_is-right-icon {
@@ -253,7 +258,7 @@ body {
   height: 1em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-image: url(' ../asserts/arrow-right.svg');
+  background-image: url('../asserts/arrow-right.svg');
 }
 
 .tetris_legend-icon_is-down-icon {
@@ -261,7 +266,7 @@ body {
   height: 1em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-image: url(' ../asserts/arrow-down.svg');
+  background-image: url('../asserts/arrow-down.svg');
 }
 
 .tetris_legend-icon_is-speed-up-icon {
@@ -269,7 +274,7 @@ body {
   height: 1em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-image: url(' ../asserts/arrow-up.svg');
+  background-image: url('../asserts/arrow-up.svg');
 }
 
 .tetris_legend-icon_is-rotate-icon {
@@ -277,7 +282,7 @@ body {
   height: 1em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-image: url(' ../asserts/rotate.svg');
+  background-image: url('../asserts/rotate.svg');
 }
 
 .tetris_legend-icon_is-pause-continue-icon {
@@ -285,22 +290,23 @@ body {
   height: 1em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-image: url(' ../asserts/pause.svg');
+  background-image: url('../asserts/pause.svg');
 }
 
 .tetris__footer {
   width: 100%;
-  margin-top: 70px;
-  border-top: 2px solid black;
+  border-top: thin solid #000;;
   display: flex;
   justify-content: space-between;
+  padding: 10px 20px;
 }
 
 .tetris__developer-info {
-  padding: 10px;
+  font-size: 18px;
+  flex: 1;
 }
 
-.company-logo {
+.tetris__company-logo {
   background-image: url(../asserts/boomowl.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
