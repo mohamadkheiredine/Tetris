@@ -307,11 +307,14 @@ body {
   flex: 1;
 }
 
+.tetris__company {
+  margin-left: 30px;
+}
+
 .tetris__company-logo {
   background-image: url(../asserts/boomowl.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  margin-left: 300px;
   width: 100px;
-  height: 40px;
+  height: 31px;
 }
