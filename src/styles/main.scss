@@ -12,7 +12,11 @@ body {
   display: flex;
   flex-direction: column; 
   width: 100%; 
-  height: 100%; 
+  height: 100vh; 
+}
+
+.tetris__content {
+  flex: 1;
 }
 
 .tetris__header {
@@ -220,4 +224,97 @@ body {
   to {
     transform: scale(20);
   }
+}
+
+.tetris__legend {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tetris__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tetris_legend-icon {
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+}
+
+.tetris_legend-icon_is-left-icon {
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/arrow-left.svg');
+}
+
+.tetris_legend-icon_is-right-icon {
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/arrow-right.svg');
+}
+
+.tetris_legend-icon_is-down-icon {
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/arrow-down.svg');
+}
+
+.tetris_legend-icon_is-speed-up-icon {
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/arrow-up.svg');
+}
+
+.tetris_legend-icon_is-rotate-icon {
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/rotate.svg');
+}
+
+.tetris_legend-icon_is-pause-continue-icon {
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/pause.svg');
+}
+
+.tetris__footer {
+  width: 100%;
+  border-top: thin solid #000;;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.tetris__developer-info {
+  font-size: 18px;
+  flex: 1;
+}
+
+.tetris__company {
+  margin-left: 30px;
+}
+
+.tetris__company-logo {
+  background-image: url(../asserts/boomowl.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 31px;
 }
