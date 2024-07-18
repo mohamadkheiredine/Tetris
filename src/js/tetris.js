@@ -7,6 +7,7 @@ import S from './S';
 import T from './T';
 import Z from './Z';
 import GridManager from './grid-manager';
+import { CONSTANTS } from './value';
 
 const KEYS = {
   space: 32,
@@ -30,18 +31,26 @@ export default class Tetris {
     this.isPaused = false;
     this.isRunning = false;
     this.gameOver = false;
+    this.ifMobile = false;
   }
 
   get elements() {
     return {
       playingField: document.querySelector('.js-playing-field'),
-      nextShape: document.querySelector('.js-next-shape'),
+      nextShape: document.querySelector(window.innerWidth < 768 ? '.js-next-shape-mobile' : '.js-next-shape'),
       scoreField: document.querySelector('.js-score'),
       highScore: document.querySelector('.js-high-score'),
       gameOver: document.querySelector('.js-game-over'),
       pauseButton: document.querySelector('.js-pause'),
       newGame: document.querySelector('.js-new-game'),
       tetrisWord: document.querySelector('.js-tetris-word'),
+      leftButton: document.querySelector('.js-mobile-left'),
+      rightButton: document.querySelector('.js-mobile-right'),
+      downButton: document.querySelector('.js-mobile-down'),
+      upButton: document.querySelector('.js-mobile-up'),
+      rotateButton: document.querySelector('.js-mobile-rotate'),
+      pauseButtonMobile: document.querySelector('.js-mobile-pause'),
+      playButton: document.querySelector('.js-mobile-play'),
     };
   }
 
@@ -69,7 +78,7 @@ export default class Tetris {
       y: 0,
       playingField: this.elements.playingField,
       rotation: rotationOptions[randomRotation],
-      unitSize: 20,
+      unitSize: CONSTANTS.unitSize,
       gridManager: this.gridManager,
     });
   }
@@ -88,6 +97,7 @@ export default class Tetris {
   drawShape() {
     this.shape.x = 4;
     this.shape.y = -2;
+    this.shape.unitSize = this.gridManager.unitSize;
     this.shape.draw(this.elements.playingField);
     this.drawNextShape();
     this.moveCurrentShape();
@@ -142,9 +152,44 @@ export default class Tetris {
         }
       }
     };
-    document.addEventListener('keydown', this.onKeyDown);
-    this.onPause = () => this.togglePause();
-    this.elements.pauseButton.addEventListener('click', this.onPause);
+
+    this.onClick = event => {
+      const clickedButton = event.target;
+      if (clickedButton === this.elements.leftButton) {
+        this.shape.moveLeft();
+      } else if (clickedButton === this.elements.rightButton) {
+        this.shape.moveRight();
+      } else if (clickedButton === this.elements.downButton) {
+        this.shape.moveDown();
+      } else if (clickedButton === this.elements.upButton) {
+        this.sleepID = {};
+        this.moveFast = true;
+        this.moveCurrentShape();
+      } else if (clickedButton === this.elements.rotateButton) {
+        this.shape.rotate();
+      } else if (clickedButton === this.elements.pauseButtonMobile) {
+        this.togglePause();
+      } else if (clickedButton === this.elements.playButton) {
+        this.start();
+      }
+    };
+
+    if (window.innerWidth > 768) {
+      document.addEventListener('keydown', this.onKeyDown);
+    } else {
+      this.ifMobile = true;
+      this.elements.leftButton.addEventListener('click', this.onClick);
+      this.elements.rightButton.addEventListener('click', this.onClick);
+      this.elements.downButton.addEventListener('click', this.onClick);
+      this.elements.upButton.addEventListener('click', this.onClick);
+      this.elements.rotateButton.addEventListener('click', this.onClick);
+      this.elements.pauseButton.addEventListener('click', this.onClick);
+      this.elements.playButton.addEventListener('click', this.onClick);
+    }
+    if (!this.ifMobile) {
+      this.onPause = () => this.togglePause();
+      this.elements.pauseButton.addEventListener('click', this.onPause);
+    }
   }
 
   drawNextShape() {
