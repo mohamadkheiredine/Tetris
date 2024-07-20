@@ -26,6 +26,12 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   }
 }
 
+.tetris__next-shape-container-on-mobile p {
+  @media (min-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
 .tetris__content {
   flex: 1;
 }
@@ -354,7 +360,7 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   justify-content: center;
   gap: 20px;
   margin-top: 20px;
-  @media (min-width: $breakpoint-desktop) {
+  @media (min-width: $breakpoint-tablet){
     display: none;
   }
 }
@@ -445,4 +451,20 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
 
 .tetris_controller-icon_grid-area_up {
   grid-area: up;
+}
+
+.tetris__box-size-mobile {
+  @media (max-width: $breakpoint-tablet) {
+    min-width: 200px;
+  }
+}
+
+.tetris__score-on-mobile {
+  display: none;
+  @media (max-width: $breakpoint-tablet) {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
 }
