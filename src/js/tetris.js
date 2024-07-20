@@ -183,7 +183,7 @@ export default class Tetris {
       this.elements.downButton.addEventListener('click', this.onClick);
       this.elements.upButton.addEventListener('click', this.onClick);
       this.elements.rotateButton.addEventListener('click', this.onClick);
-      this.elements.pauseButton.addEventListener('click', this.onClick);
+      this.elements.pauseButtonMobile.addEventListener('click', this.onClick);
       this.elements.playButton.addEventListener('click', this.onClick);
     }
     if (!this.ifMobile) {
