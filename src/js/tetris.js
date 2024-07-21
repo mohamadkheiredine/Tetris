@@ -40,7 +40,7 @@ export default class Tetris {
       nextShape: document.querySelector(window.innerWidth < 768 ? '.js-next-shape-mobile' : '.js-next-shape'),
       scoreField: document.querySelector('.js-score'),
       highScore: document.querySelector('.js-high-score'),
-      gameOver: document.querySelector('.js-game-over'),
+      gameOver: document.querySelector(window.innerWidth < 768 ? '.js-game-over-mobile' : '.js-game-over'),
       pauseButton: document.querySelector('.js-pause'),
       newGame: document.querySelector('.js-new-game'),
       tetrisWord: document.querySelector('.js-tetris-word'),
@@ -78,12 +78,14 @@ export default class Tetris {
       y: 0,
       playingField: this.elements.playingField,
       rotation: rotationOptions[randomRotation],
-      unitSize: CONSTANTS.unitSize,
+      unitSize: window.innerWidth < 768 ? this.gridManager.unitSize * 0.6 : this.gridManager.unitSize,
       gridManager: this.gridManager,
     });
   }
 
   start() {
+    this.elements.playButton.classList.remove('tetris__controller-icon_is-play-icon');
+    this.elements.playButton.classList.add('tetris__controller-icon_is-restart-icon');
     this.isRunning = true;
     this.gameOver = false;
     this.sleepID = {};
@@ -274,10 +276,14 @@ export default class Tetris {
     this.sleepID = {};
     if (this.isPaused) {
       this.elements.pauseButton.innerHTML = 'Pause';
+      this.elements.pauseButtonMobile.classList.remove('tetris_controller-icon_is-play-icon');
+      this.elements.pauseButtonMobile.classList.add('tetris_controller-icon_is-pause-icon');
       this.isPaused = false;
       this.moveCurrentShape();
     } else {
       this.elements.pauseButton.innerHTML = 'Continue';
+      this.elements.pauseButtonMobile.classList.add('tetris_controller-icon_is-play-icon');
+      this.elements.pauseButtonMobile.classList.remove('tetris_controller-icon_is-pause-icon');
       this.isPaused = true;
     }
 }
