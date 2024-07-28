@@ -13,9 +13,23 @@
       <div class="tetris__header">
         <h1 class="tetris__header-title">TETRIS GAME</h1>
       </div>
+
+      <div class="tetris__next-shape-container-on-mobile">
+        <p>Next</p>
+        <div class="tetris__next-shape-mobile js-next-shape-mobile"></div>
+      </div>
+      <!-- here i add score for the mobile design -->
+      <div class="tetris__score-on-mobile">
+        <div class="tetris__score-label">Score</div>
+        <div class="tetris__score-value js-score-mobile">0</div>
+        <div class="tetris__score-label">High Score</div>
+        <div class="tetris__score-value js-high-score-mobile">0</div>
+      </div>
+      <!-- here game over on mobile -->
+      <div class="tetris__action-game-over-on-mobile js-game-over-mobile">GAME OVER</div>
       
       <div class="tetris__body">
-        <div class="tetris__box">
+        <div class="tetris__box tetris__box_is-hidden-on-mobile">
           <div class="tetris__next-shape">
             <p>Next Shape</p>
             <div class="tetris__next-shape-container">
@@ -24,9 +38,9 @@
           </div>
         </div>
         
-        <div class="tetris__box tetris__box_border-size_3 tetris__box_position_relative js-playing-field tetris__box_overflow_hidden"></div>
+        <div class="tetris__box tetris__box_border-size_3 tetris__box_position_relative js-playing-field tetris__box_overflow_hidden tetris__box-size-mobile"></div>
         
-        <div class="tetris__box">
+        <div class="tetris__box tetris__box_is-hidden-on-mobile">
           <div class="tetris__score-label">Score</div>
           <div class="tetris__score-value js-score">0</div>
           <div class="tetris__score-label">High Score</div>
@@ -63,6 +77,21 @@
           <div class="tetris__legend-label">Pause/Continue</div>
         </div>
       </div>
+
+      <!-- hone l controllers t3il l mobile -->
+
+      <div class="tetris__mobile-controllers">
+        <div class="tetris__controller-icon tetris__controller-icon_is-rotate-icon js-mobile-rotate"></div>
+        <div class="tetris__controller-icon tetris__controller-icon_is-play-icon js-mobile-play"></div>
+        <div class="tetris__controller-icon tetris__controller-icon_is-pause-icon js-mobile-pause"></div>
+        <div class="tetris__mobile-move-controllers">
+          <div class="tetris__controller-icon tetris__controller-icon_is-left-icon tetris__controller-icon_grid-area_left js-mobile-left"></div>
+          <div class="tetris__controller-icon tetris__controller-icon_is-right-icon tetris__controller-icon_grid-area_right js-mobile-right"></div>
+          <div class="tetris__controller-icon tetris__controller-icon_is-down-icon tetris__controller-icon_grid-area_down js-mobile-down"></div>
+          <div class="tetris__controller-icon tetris__controller-icon_is-up-icon tetris__controller-icon_grid-area_up js-mobile-up"></div>
+        </div>
+      </div>
+
       
     </div>
     <!-- end of tetris content -->

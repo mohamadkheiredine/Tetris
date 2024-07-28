@@ -1,11 +1,14 @@
 import Tetris from "./tetris";
 import Tetromino from "./tetromino";
 import Block from "./block";
+import { CONSTANTS } from "./value";
 
 export default class GridManager {
   constructor ({playingField}) {
     this.playingField = playingField;
     this.blocks = [];
+    this.unitSize = CONSTANTS.unitSize;
+    this.drawGrid();
   }
 
   getLinesToClear() {
@@ -61,5 +64,10 @@ export default class GridManager {
     });
   
     return newBlocks;
+  }
+
+  drawGrid() {
+    this.playingField.style.width = `${CONSTANTS.unitSize * CONSTANTS.tetrisWidth}px`;
+    this.playingField.style.height = `${CONSTANTS.unitSize * CONSTANTS.tetrisHeight}px`;
   }
 }

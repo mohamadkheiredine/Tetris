@@ -9,14 +9,21 @@ import GridManager from "./js/grid-manager";
   let gridManager = new GridManager({ playingField });
   let tetris = new Tetris({ gridManager });
   tetris.loadHighScore();
-  document.querySelector('.js-new-game').addEventListener('click', () => {
+  const start = () => {
     if (!tetris.isRunning) {
       if (tetris.gameOver) {
         tetris.clearAll();
       }
       tetris.start();
     } else {
+      console.log('Game is already running');
       tetris.restart();
     }
+  }
+  document.querySelector('.js-new-game').addEventListener('click', () => {
+    start();
+  });
+  document.querySelector('.js-mobile-play').addEventListener('click', () => {
+    start();
   });
 })();

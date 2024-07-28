@@ -1,3 +1,7 @@
+$breakpoint-tablet: 768px; //mn hon bbalesh tablet
+$breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
+// a2al mn 768 howe mobile
+
 * {
   margin: 0;
   padding: 0;
@@ -15,6 +19,22 @@ body {
   height: 100vh; 
 }
 
+.tetris__next-shape-container-on-mobile {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.tetris__next-shape-mobile {
+  position: absolute;
+  top: 30px;
+  right: 60px;
+}
+
 .tetris__content {
   flex: 1;
 }
@@ -22,12 +42,22 @@ body {
 .tetris__header {
   display: flex;
   justify-content: center;
-  align-items: center;;
+  align-items: center;
 }
 
 .tetris__header-title {
   text-align: center;
   margin: 50px 0;
+
+  @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+    font-size: 30px;
+    margin: 30px 0;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 20px;
+    margin: 20px 0;
+  }
 }
 
 .tetris__body {
@@ -78,7 +108,7 @@ body {
   border-style: solid;
   border-width: 2px;
   padding: 15px;
-  margin-left: 20px;;
+  margin-left: 20px;
   border-color: #4F4CCA;
   color: #4F4CCA;
   cursor: pointer;
@@ -87,6 +117,9 @@ body {
 .tetris__action-button_is-pause-button {
   border-color: #57B25A;
   color: #57B25A;
+  @media (max-width: $breakpoint-tablet) {
+    display: none;
+  }
 }
 
 .tetris__action-button:hover {
@@ -231,6 +264,9 @@ body {
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
+  @media (max-width: $breakpoint-tablet) {
+    display: none;
+  }
 }
 
 .tetris__legend-item {
@@ -317,4 +353,144 @@ body {
   background-repeat: no-repeat;
   width: 100px;
   height: 31px;
+}
+
+.tetris__box_is-hidden-on-mobile {
+  @media (max-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.tetris__mobile-controllers {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  @media (min-width: $breakpoint-tablet){
+    display: none;
+  }
+}
+
+.tetris__controller-icon {
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.tetris__controller-icon_is-rotate-icon {
+  width: 1.5em;
+  height: 1.5em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/rotate.svg');
+}
+
+.tetris__controller-icon_is-play-icon {
+  width: 1.5em;
+  height: 1.5em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/play.svg');
+}
+
+.tetris__controller-icon_is-pause-icon {
+  width: 1.5em;
+  height: 1.5em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/pause.svg');
+}
+
+.tetris__mobile-move-controllers {
+  display: grid;
+  grid-template-areas: 
+    ".     up    ."
+    "left  .     right"
+    ".     down  .";
+  margin-top: -18px;
+  gap: 3px;
+}
+
+.tetris__controller-icon_is-left-icon {
+  width: 1.5em;
+  height: 1.5em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/arrow-left.svg');
+}
+
+.tetris__controller-icon_is-right-icon {
+  width: 1.5em;
+  height: 1.5em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/arrow-right.svg');
+}
+
+.tetris__controller-icon_is-down-icon {
+  width: 1.5em;
+  height: 1.5em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/arrow-down.svg');
+}
+
+.tetris__controller-icon_is-up-icon {
+  width: 1.5em;
+  height: 1.5em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/arrow-up.svg');
+}
+
+.tetris__controller-icon_grid-area_left {
+  grid-area: left;
+}
+
+.tetris__controller-icon_grid-area_right {
+  grid-area: right;
+}
+
+.tetris__controller-icon_grid-area_down {
+  grid-area: down;
+}
+
+.tetris__controller-icon_grid-area_up {
+  grid-area: up;
+}
+
+.tetris__score-on-mobile {
+  display: none;
+  @media (max-width: $breakpoint-tablet) {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+.tetris__action-game-over-on-mobile {
+  display: none;
+  border: 3px solid red;
+  background-color: lightgreen;
+  color: red;
+  font-weight: bold;
+  font-size: 30px;
+  padding: 20px; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.tetris__controller-icon_is-restart-icon {
+  width: 1.5em;
+  height: 1.5em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/restart.svg');
 }
