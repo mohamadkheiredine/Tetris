@@ -38,7 +38,7 @@ export default class Tetris {
     return {
       playingField: document.querySelector('.js-playing-field'),
       nextShape: document.querySelector(window.innerWidth < 768 ? '.js-next-shape-mobile' : '.js-next-shape'),
-      scoreField: document.querySelector('.js-score'),
+      scoreField: document.querySelector(window.innerWidth < 768 ? '.js-score-mobile' : '.js-score'),
       highScore: document.querySelector('.js-high-score'),
       gameOver: document.querySelector(window.innerWidth < 768 ? '.js-game-over-mobile' : '.js-game-over'),
       pauseButton: document.querySelector('.js-pause'),
@@ -86,6 +86,8 @@ export default class Tetris {
   start() {
     this.elements.playButton.classList.remove('tetris__controller-icon_is-play-icon');
     this.elements.playButton.classList.add('tetris__controller-icon_is-restart-icon');
+    this.elements.pauseButtonMobile.classList.remove('tetris__controller-icon_is-play-icon');
+    this.elements.pauseButtonMobile.classList.add('tetris__controller-icon_is-pause-icon');
     this.isRunning = true;
     this.gameOver = false;
     this.sleepID = {};
@@ -155,43 +157,37 @@ export default class Tetris {
       }
     };
 
-    this.onClick = event => {
-      const clickedButton = event.target;
-      if (clickedButton === this.elements.leftButton) {
-        this.shape.moveLeft();
-      } else if (clickedButton === this.elements.rightButton) {
-        this.shape.moveRight();
-      } else if (clickedButton === this.elements.downButton) {
-        this.shape.moveDown();
-      } else if (clickedButton === this.elements.upButton) {
-        this.sleepID = {};
-        this.moveFast = true;
-        this.moveCurrentShape();
-      } else if (clickedButton === this.elements.rotateButton) {
-        this.shape.rotate();
-      } else if (clickedButton === this.elements.pauseButtonMobile) {
-        this.togglePause();
-      } else if (clickedButton === this.elements.playButton) {
-        this.start();
-      }
-    };
+    this.onClickUpButton = event => {
+      this.sleepID = {};
+      this.moveFast = true;
+      this.moveCurrentShape();
+    }
+    this.onClickMoveLeft = event => {
+      this.shape.moveLeft();
+    }
+    this.onClickMoveRight = event => {
+      this.shape.moveRight();
+    }
+    this.onClickMoveDown = event => {
+      this.shape.moveDown();
+    }
+    this.onClickRotate = event => {
+      this.shape.rotate();
+    }
+    this.onClickPause = event => {
+      this.togglePause();
+    }
+    this.onPause = () => this.togglePause();
+    this.elements.pauseButton.addEventListener('click', this.onPause);
 
-    if (window.innerWidth > 768) {
-      document.addEventListener('keydown', this.onKeyDown);
-    } else {
-      this.ifMobile = true;
-      this.elements.leftButton.addEventListener('click', this.onClick);
-      this.elements.rightButton.addEventListener('click', this.onClick);
-      this.elements.downButton.addEventListener('click', this.onClick);
-      this.elements.upButton.addEventListener('click', this.onClick);
-      this.elements.rotateButton.addEventListener('click', this.onClick);
-      this.elements.pauseButtonMobile.addEventListener('click', this.onClick);
-      this.elements.playButton.addEventListener('click', this.onClick);
-    }
-    if (!this.ifMobile) {
-      this.onPause = () => this.togglePause();
-      this.elements.pauseButton.addEventListener('click', this.onPause);
-    }
+
+    document.addEventListener('keydown', this.onKeyDown);
+    this.elements.leftButton.addEventListener('click', this.onClickMoveLeft);
+    this.elements.rightButton.addEventListener('click', this.onClickMoveRight);
+    this.elements.downButton.addEventListener('click', this.onClickMoveDown);
+    this.elements.upButton.addEventListener('click', this.onClickUpButton);
+    this.elements.rotateButton.addEventListener('click', this.onClickRotate);
+    this.elements.pauseButtonMobile.addEventListener('click', this.onClickPause);
   }
 
   drawNextShape() {
@@ -254,8 +250,16 @@ export default class Tetris {
   }
 
   removeListeners() {
+    console.log('Removing listeners');
     document.removeEventListener('keydown', this.onKeyDown);
     this.elements.pauseButton.removeEventListener('click', this.onPause);
+    this.elements.leftButton.removeEventListener('click', this.onClickMoveLeft);
+    this.elements.rightButton.removeEventListener('click', this.onClickMoveRight);
+    this.elements.downButton.removeEventListener('click', this.onClickMoveDown);
+    this.elements.upButton.removeEventListener('click', this.onClickUpButton);
+    this.elements.rotateButton.removeEventListener('click', this.onClickRotate);
+    this.elements.pauseButtonMobile.removeEventListener('click', this.onClickPause);
+    console.log('remove listener done');
   }
 
   clearAll() {
@@ -276,25 +280,28 @@ export default class Tetris {
     this.sleepID = {};
     if (this.isPaused) {
       this.elements.pauseButton.innerHTML = 'Pause';
-      this.elements.pauseButtonMobile.classList.remove('tetris_controller-icon_is-play-icon');
-      this.elements.pauseButtonMobile.classList.add('tetris_controller-icon_is-pause-icon');
+      this.elements.pauseButtonMobile.classList.remove('tetris__controller-icon_is-play-icon');
+      this.elements.pauseButtonMobile.classList.add('tetris__controller-icon_is-pause-icon');
       this.isPaused = false;
       this.moveCurrentShape();
     } else {
       this.elements.pauseButton.innerHTML = 'Continue';
-      this.elements.pauseButtonMobile.classList.add('tetris_controller-icon_is-play-icon');
-      this.elements.pauseButtonMobile.classList.remove('tetris_controller-icon_is-pause-icon');
+      this.elements.pauseButtonMobile.classList.add('tetris__controller-icon_is-play-icon');
+      this.elements.pauseButtonMobile.classList.remove('tetris__controller-icon_is-pause-icon');
       this.isPaused = true;
     }
 }
 
   restart() {
+    console.log('restrat function here');
     this.isRunning = false;
     this.removeListeners();
     this.clearAll();
     this.moveFast = false;
+    this.isPaused = false;
+    console.log('should restart');
     this.start();
-  }
+}
 
   onClearFourLine() {
     this.elements.tetrisWord.style.display = 'block';

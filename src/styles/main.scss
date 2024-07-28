@@ -1,3 +1,7 @@
+$breakpoint-tablet: 768px; //mn hon bbalesh tablet
+$breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
+// a2al mn 768 howe mobile
+
 * {
   margin: 0;
   padding: 0;
@@ -6,10 +10,6 @@
 body {
   min-height: 100vh;
 }
-
-$breakpoint-tablet: 768px; //mn hon bbalesh tablet
-$breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
-// a2al mn 768 howe mobile
 
 .tetris {
   position: relative;
@@ -20,23 +20,14 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
 }
 
 .tetris__next-shape-container-on-mobile {
-  position: absolute;
-  top: 10px;
-  right: 30px;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.tetris__next-shape-container-on-mobile p {
-  margin-bottom: 20px;
-}
-
-.tetris__next-shape-container-on-mobile p {
   @media (min-width: $breakpoint-tablet) {
     display: none;
   }
+}
+
+.tetris__next-shape-mobile {
+  position: absolute;
+  top: 30px;
 }
 
 .tetris__content {
@@ -359,9 +350,9 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   height: 31px;
 }
 
-.tetris__box__mobile-change {
+.tetris__box_is-hidden-on-mobile {
   @media (max-width: $breakpoint-tablet) {
-    visibility: hidden;
+    display: none;
   }
 }
 
@@ -375,14 +366,14 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   }
 }
 
-.tetris_controller-icon {
+.tetris__controller-icon {
   width: 15px;
   height: 15px;
   border: 1px solid black;
   border-radius: 3px;
 }
 
-.tetris_controller-icon_is-rotate-icon {
+.tetris__controller-icon_is-rotate-icon {
   width: 1em;
   height: 1em;
   background-repeat: no-repeat;
@@ -390,7 +381,7 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   background-image: url('../asserts/rotate.svg');
 }
 
-.tetris_controller-icon_is-play-icon {
+.tetris__controller-icon_is-play-icon {
   width: 1em;
   height: 1em;
   background-repeat: no-repeat;
@@ -398,7 +389,7 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   background-image: url('../asserts/play.svg');
 }
 
-.tetris_controller-icon_is-pause-icon {
+.tetris__controller-icon_is-pause-icon {
   width: 1em;
   height: 1em;
   background-repeat: no-repeat;
@@ -416,7 +407,7 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   gap: 3px;
 }
 
-.tetriscontroller-icon_is-left-icon {
+.tetris__controller-icon_is-left-icon {
   width: 1em;
   height: 1em;
   background-repeat: no-repeat;
@@ -424,7 +415,7 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   background-image: url('../asserts/arrow-left.svg');
 }
 
-.tetriscontroller-icon_is-right-icon {
+.tetris__controller-icon_is-right-icon {
   width: 1em;
   height: 1em;
   background-repeat: no-repeat;
@@ -432,7 +423,7 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   background-image: url('../asserts/arrow-right.svg');
 }
 
-.tetriscontroller-icon_is-down-icon {
+.tetris__controller-icon_is-down-icon {
   width: 1em;
   height: 1em;
   background-repeat: no-repeat;
@@ -440,7 +431,7 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   background-image: url('../asserts/arrow-down.svg');
 }
 
-.tetriscontroller-icon_is-up-icon {
+.tetris__controller-icon_is-up-icon {
   width: 1em;
   height: 1em;
   background-repeat: no-repeat;
@@ -448,27 +439,20 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   background-image: url('../asserts/arrow-up.svg');
 }
 
-.tetris_controller-icon_grid-area_left {
+.tetris__controller-icon_grid-area_left {
   grid-area: left;
 }
 
-.tetris_controller-icon_grid-area_right {
+.tetris__controller-icon_grid-area_right {
   grid-area: right;
 }
 
-.tetris_controller-icon_grid-area_down {
+.tetris__controller-icon_grid-area_down {
   grid-area: down;
 }
 
-.tetris_controller-icon_grid-area_up {
+.tetris__controller-icon_grid-area_up {
   grid-area: up;
-}
-
-.tetris__box-size-mobile {
-  @media (max-width: $breakpoint-tablet) {
-    min-width: 250px;
-    height: 500px;
-  }
 }
 
 .tetris__score-on-mobile {
@@ -494,4 +478,14 @@ $breakpoint-desktop: 1024px; // mn hon bbalesh l desktop y3ne mn 1024 w tloo3
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.tetris__controller-icon_is-restart-icon {
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('../asserts/restart.svg');
 }
