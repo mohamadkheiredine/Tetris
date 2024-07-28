@@ -39,7 +39,7 @@ export default class Tetris {
       playingField: document.querySelector('.js-playing-field'),
       nextShape: document.querySelector(window.innerWidth < 768 ? '.js-next-shape-mobile' : '.js-next-shape'),
       scoreField: document.querySelector(window.innerWidth < 768 ? '.js-score-mobile' : '.js-score'),
-      highScore: document.querySelector('.js-high-score'),
+      highScore: document.querySelector(window.innerWidth < 768 ? '.js-high-score-mobile' : '.js-high-score'),
       gameOver: document.querySelector(window.innerWidth < 768 ? '.js-game-over-mobile' : '.js-game-over'),
       pauseButton: document.querySelector('.js-pause'),
       newGame: document.querySelector('.js-new-game'),

@@ -21,9 +21,9 @@ import GridManager from "./js/grid-manager";
     }
   }
   document.querySelector('.js-new-game').addEventListener('click', () => {
-    tetris.start();
+    start();
   });
   document.querySelector('.js-mobile-play').addEventListener('click', () => {
-    tetris.start();
+    start();
   });
 })();

@@ -20,6 +20,10 @@ body {
 }
 
 .tetris__next-shape-container-on-mobile {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
   @media (min-width: $breakpoint-tablet) {
     display: none;
   }
@@ -28,6 +32,7 @@ body {
 .tetris__next-shape-mobile {
   position: absolute;
   top: 30px;
+  right: 60px;
 }
 
 .tetris__content {
@@ -37,7 +42,7 @@ body {
 .tetris__header {
   display: flex;
   justify-content: center;
-  align-items: center;;
+  align-items: center;
 }
 
 .tetris__header-title {
@@ -103,7 +108,7 @@ body {
   border-style: solid;
   border-width: 2px;
   padding: 15px;
-  margin-left: 20px;;
+  margin-left: 20px;
   border-color: #4F4CCA;
   color: #4F4CCA;
   cursor: pointer;
@@ -374,24 +379,24 @@ body {
 }
 
 .tetris__controller-icon_is-rotate-icon {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url('../asserts/rotate.svg');
 }
 
 .tetris__controller-icon_is-play-icon {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url('../asserts/play.svg');
 }
 
 .tetris__controller-icon_is-pause-icon {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url('../asserts/pause.svg');
@@ -408,32 +413,32 @@ body {
 }
 
 .tetris__controller-icon_is-left-icon {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url('../asserts/arrow-left.svg');
 }
 
 .tetris__controller-icon_is-right-icon {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url('../asserts/arrow-right.svg');
 }
 
 .tetris__controller-icon_is-down-icon {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url('../asserts/arrow-down.svg');
 }
 
 .tetris__controller-icon_is-up-icon {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url('../asserts/arrow-up.svg');
@@ -483,8 +488,8 @@ body {
 }
 
 .tetris__controller-icon_is-restart-icon {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url('../asserts/restart.svg');
